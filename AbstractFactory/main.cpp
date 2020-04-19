@@ -3,12 +3,15 @@
 
 using std::string;
 
+/* Each individual worker in the worker family must have a basic interface.
+All worker variations must implement this interface. */
 class AbstractWorkerA {
 public:
     virtual ~AbstractWorkerA()= default;
     [[nodiscard]] virtual string UseFunctionA() const = 0;
 };
 
+/* Concrete workers are created by concrete factories */
 class ConcreteWorkerA1 : public AbstractWorkerA {
 public:
     [[nodiscard]] string UseFunctionA() const override {
@@ -22,6 +25,8 @@ class ConcreteWorkerA2 : public AbstractWorkerA {
     }
 };
 
+/* The base interface of another worker. All workers can interact with
+ * each other, but the correct interaction is possible only between workers of the same variation*/
 class AbstractWorkerB {
 public:
     virtual ~AbstractWorkerB() = default;
@@ -35,12 +40,15 @@ public:
         return "The result of the worker B1";
     }
 
+    /*Worker B can interact with Workers A same variation.
+     * AbstractFactory ensures that all workers it creates have same variation and are therefore compatible*/
     [[nodiscard]] string AnotherFunctionB(const AbstractWorkerA &collaborator) const override {
         const string result = collaborator.UseFunctionA();
         return "Result of the B1 collaborating with < " + result + " >";
     }
 };
 
+/* Concrete workers are created by concrete factories */
 class ConcreteWorkerB2 : public AbstractWorkerB {
 public:
     [[nodiscard]] string UseFunctionB() const override {
@@ -53,12 +61,14 @@ public:
     }
 };
 
+/* AbstactFactory interface announced a set of methods that returns various abstract workers */
 class AbstractFactory {
 public:
     [[nodiscard]] virtual AbstractWorkerA *CreateWorkerA() const = 0;
     [[nodiscard]] virtual AbstractWorkerB *CreateWorkerB() const = 0;
 };
 
+/* A concrete factory produces a family of workers of the same variation. */
 class ConcreteFactory1 : public AbstractFactory {
 public:
     [[nodiscard]] AbstractWorkerA *CreateWorkerA() const override {
@@ -82,6 +92,7 @@ public:
 using std::cout;
 using std::endl;
 
+/* Client code only works with factories and products through abstract types */
 void ClientCode(const AbstractFactory &factory) {
     const AbstractWorkerA *workerA = factory.CreateWorkerA();
     const AbstractWorkerB *workerB = factory.CreateWorkerB();

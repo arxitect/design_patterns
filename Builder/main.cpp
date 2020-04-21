@@ -7,6 +7,7 @@ using std::vector;
 using std::cout;
 using std::endl;
 
+/* Builders can produce unrelated elements */
 class SuperBot {
 public:
     vector<string> parts;
@@ -23,6 +24,7 @@ public:
     }
 };
 
+/* Builder Interface declares creating methods for various parts of objects */
 class Builder {
 public:
     virtual ~Builder()= default;;
@@ -31,9 +33,13 @@ public:
     virtual void ProducePartC() const = 0;
 };
 
+/* The concrete Builder classes follow the Builder interface
+ * and provide concrete implementations of the building steps. */
 class SuperBotBuilder : public Builder {
 private:
     SuperBot* superBot;
+    /* A new instance of the builder must contain an empty object,
+     * which is used in further assembly. */
 public:
     SuperBotBuilder() {
         this->Reset();
@@ -66,6 +72,8 @@ public:
     }
 };
 
+/* The director is only responsible for completing
+ * the construction steps in a specific sequence. */
 class Director {
 private:
     Builder *builder;
@@ -85,6 +93,9 @@ public:
     }
 };
 
+/* The client code creates the builder object, passes it to the director,
+ * and then initiates the construction process.
+ * The final result is extracted from the builder. */
 void ClientCode(Director &director)
 {
     SuperBotBuilder* builder = new SuperBotBuilder();

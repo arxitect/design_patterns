@@ -5,12 +5,16 @@ using std::cout;
 using std::endl;
 using std::string;
 
+/* The Product Interface announces the operations
+ * that all specific products must perform. */
 class Product {
 public:
     virtual ~Product() = default;
     [[nodiscard]] virtual string Operation() const = 0;
 };
 
+/* Specific Products provides various
+ * implementations of the Product interface. */
 class ConcreteProduct1 : public Product {
 public:
     [[nodiscard]] string Operation() const override {
@@ -24,6 +28,10 @@ class ConcreteProduct2 : public Product {
     }
 };
 
+/* The Creator class declares a factory method
+ * that should return an object of the Product class.
+ * Creator subclasses typically provide an implementation
+ * of this method. */
 class Creator {
 public:
     virtual ~Creator()= default;
@@ -38,6 +46,8 @@ public:
 
 };
 
+/* Concrete Creators redefine the factory method
+ * in order to change the type of resultant product. */
 class ConcreteCreator1 : public Creator {
 public:
     [[nodiscard]] Product* FactoryMethod() const override {
@@ -52,12 +62,19 @@ public:
     }
 };
 
+/* Client code works with an instance of a specific creator,
+ * although through its basic interface.
+ * While the client continues to work with the creator
+ * through the base interface, you can pass any
+ * subclass of the creator to it. */
 void ClientCode(const Creator &creator)
 {
     cout << "Client: i'm not aware of the creator's class, but it still works\n"
          << creator.SomeOperation() << endl;
 }
 
+/* The application selects the type of creator
+ * depending on the configuration or environment. */
 int main()
 {
     cout << "App: Launched with ConcreteCreator 1.\n";

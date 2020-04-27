@@ -11,6 +11,7 @@ enum Type {
     PROTOTYPE_2
 };
 
+/* An example of a class having the ability to clone. */
 class Prototype {
 protected:
     string prototypeName;
@@ -27,6 +28,7 @@ public:
     }
 };
 
+/* ConcretePrototype1 is a Sub-Class of Prototype and implement the Clone Method. */
 class ConcretePrototype1 : public Prototype{
 private:
     float concretePrototypeField;
@@ -34,6 +36,7 @@ public:
     ConcretePrototype1(string prototypeNameVal, float concretePrototypeFieldVal)
         : Prototype(prototypeNameVal), concretePrototypeField(concretePrototypeFieldVal){}
 
+    /* Notice that Clone method return a Pointer to a new ConcretePrototype1 */
     [[nodiscard]] Prototype *Clone() const override {
         return new ConcretePrototype1(*this);
     }
@@ -52,6 +55,9 @@ public:
     }
 };
 
+/* In PrototypeFactory you have two concrete prototypes, one for each concrete
+ * prototype class, so each time you want to create a bullet , you can use the
+ * existing ones and clone those. */
 class PrototypeFactory {
 private:
     std::unordered_map<Type, Prototype *, std::hash<int>> prototypes;
@@ -65,6 +71,10 @@ public:
         delete prototypes[Type::PROTOTYPE_1];
         delete prototypes[Type::PROTOTYPE_2];
     }
+
+    /* Notice here that you just need to specify the type of the prototype you
+    * want and the method will create from the object with this type.
+    */
     Prototype *CreatePrototype(Type type) {
         return prototypes[type]->Clone();
     }

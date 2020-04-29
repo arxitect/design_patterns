@@ -5,6 +5,8 @@
 using std::string;
 using std::cout;
 
+/* The target class declares an interface
+ * with which client code can work. */
 class Target {
 public:
     virtual ~Target() = default;
@@ -14,6 +16,10 @@ public:
     }
 };
 
+/* An adaptable class contains some useful behavior,
+ * but its interface is incompatible with existing client code.
+ * The adaptable class needs some refinement
+ * before the client code can use it. */
 class Adaptee {
 public:
     static string SpecificRequest() {
@@ -21,6 +27,8 @@ public:
     }
 };
 
+/* The Adapter makes the Adaptable Class interface
+ * compatible with the target interface. */
 class Adapter : public Target {
 private:
     Adaptee *adaptee;
@@ -33,6 +41,7 @@ public:
     }
 };
 
+/*  Клиентский код поддерживает все классы, использующие целевой интерфейс. */
 void ClientCode(const Target *target) {
     cout << target->Request();
 }

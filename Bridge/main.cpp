@@ -4,12 +4,16 @@
 using std::string;
 using std::cout;
 
+/* The implementation establishes an interface for all implementation classes.
+ * It must not match the Abstraction interface. */
 class Implementation {
 public:
     virtual ~Implementation() = default;
     [[nodiscard]] virtual string OperationImplementation() const = 0;
 };
 
+/* Each Specific Implementation corresponds to a specific platform and implements
+ * the Implementation interface using the API of that platform. */
 class ConcreteImplementationA : public Implementation {
 public:
     [[nodiscard]] string OperationImplementation() const override {
@@ -24,6 +28,8 @@ public:
     }
 };
 
+/* Abstraction establishes an interface for the "control" part of two class hierarchies.
+ * It contains a reference to an object from the hierarchy of Implementation and delegates to it all the real work. */
 class Abstraction {
 protected:
     Implementation* implementation_;
@@ -38,6 +44,7 @@ public:
     }
 };
 
+/* You can extend the Abstraction without changing the implementation classes. */
 class ExtendedAbstraction : public Abstraction {
 public:
     explicit ExtendedAbstraction(Implementation* implementation) : Abstraction(implementation) {
@@ -51,6 +58,8 @@ void ClientCode(const Abstraction& abstraction) {
     cout << abstraction.Operation();
 }
 
+/* Client code must work with any pre-configured
+ * combination of abstraction and implementation. */
 int main() {
     Implementation* implementation = new ConcreteImplementationA;
     Abstraction* abstraction = new Abstraction(implementation);

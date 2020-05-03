@@ -7,9 +7,13 @@ using std::string;
 using std::list;
 using std::cout;
 
+/* The base class Component declares common operations
+ * for both simple and complex structure objects. */
 class Component {
 protected:
     Component *parent_;
+    /* If necessary, the base Component can declare an interface for
+     * installing and receiving the parent of the component in the tree structure. */
 public:
     virtual ~Component() = default;
     void SetParent(Component *parent) {
@@ -18,6 +22,8 @@ public:
     [[nodiscard]] Component *GetParent() const {
         return this->parent_;
     }
+    /* In some cases, it is advisable to define descendant
+     * management operations directly in the Component base class. */
     virtual void Add(Component *component) {}
     virtual void Remove(Component *component) {}
     [[nodiscard]] virtual bool isComposite() const {
@@ -27,6 +33,8 @@ public:
     [[nodiscard]] virtual string Operation() const = 0;
 };
 
+/* The Leaf class represents the final objects of a structure.
+ * The Leaf cannot have nested components. */
 class Leaf : public Component {
 public:
     [[nodiscard]] string Operation() const override {
@@ -34,6 +42,8 @@ public:
     }
 };
 
+/* The Container class contains complex components that may have nested components. Typically,
+ * the Container objects delegate the actual work to their children, and then "summarize" the result. */
 class Composite : public Component {
 protected:
     list<Component *> children_;
@@ -64,6 +74,8 @@ public:
     }
 };
 
+/* Client code works with all
+ * components through the base interface. */
 void ClientCode(Component *component) {
     cout << "RESULT: " << component->Operation();
 }

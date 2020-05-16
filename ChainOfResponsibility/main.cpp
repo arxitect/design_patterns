@@ -25,7 +25,7 @@ public:
         this->next_handler_ = handler;
         //Returning the handler from here will allow the handlers to be linked in a simple way,
         //like this:
-        //  $ monkey->setNext($ squirrel)->setNext($ dog);
+        // monkey->setNext(squirrel)->setNext(dog);
         return handler;
     }
     string Handle(string request) override {

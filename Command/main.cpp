@@ -4,12 +4,14 @@
 using std::string;
 using std::cout;
 
+/* The Command Interface declares a method for executing commands. */
 class Command {
 public:
     virtual ~Command() = default;
     virtual void Execute() const = 0;
 };
 
+/* Some commands are able to perform simple operations on their own . */
 class SimpleCommand : public Command {
 private:
     string payLoad_;
@@ -20,6 +22,9 @@ public:
     }
 };
 
+/* Recipient classes contain some important business logic.
+ * They are able to perform all kinds of operations related to the execution of the request.
+ * In fact, any class can act as the Recipient. */
 class Receiver {
 public:
     void doSomething(const string &a) {
@@ -30,12 +35,15 @@ public:
     }
 };
 
+/* But there are commands that delegate more complex operations to other objects called "recipients". */
 class ComplexCommand : public Command {
 private:
     Receiver *receiver_;
     string a_;
     string b_;
 public:
+    /* Complex commands can accept one or more recipient
+     * objects along with any context data through the constructor. */
     ComplexCommand(Receiver *receiver, string a, string b) : receiver_(receiver), a_(a), b_(b) {}
 
     void Execute() const override {
@@ -45,6 +53,7 @@ public:
     }
 };
 
+/* The Invoker is associated with one or more commands. He sends a request to the team. */
 class Invoker {
 private:
     Command *onStart_;
@@ -73,6 +82,8 @@ public:
             this->onFinish_->Execute();
     }
 };
+
+/* Client code can parameterize the sender with any commands. */
 int main()
 {
     Invoker *invoker = new Invoker;

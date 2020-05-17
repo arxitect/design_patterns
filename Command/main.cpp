@@ -53,7 +53,7 @@ public:
     }
 };
 
-/* The Invoker is associated with one or more commands. He sends a request to the team. */
+/* The Invoker is associated with one or more commands. He sends a request to the command. */
 class Invoker {
 private:
     Command *onStart_;

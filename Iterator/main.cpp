@@ -35,6 +35,27 @@ private:
     iter_type m_it_;
 };
 
+template <class T>
+class Container {
+    friend class Iterator<T, Container>;
+private:
+    vector<T> m_data_;
+public:
+    void Add(T a) {
+        m_data_.push_back();
+    };
+    Iterator<T, Container> *createIterator() {
+        return new Iterator<T, Container>(this);
+    }
+};
+
+class Data {
+private:
+    int m_data_;
+public:
+    Data(int a = 0) : m_data_(a) {}
+};
+
 int main()
 {
     return 0;

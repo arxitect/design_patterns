@@ -1,11 +1,12 @@
 #include <iostream>
-#include <string>
 #include <vector>
 
-using std::string;
 using std::vector;
 using std::cout;
 using std::endl;
+
+/* C++ has its own implementation of iterator that works with a different
+ * generics containers defined by the standard library. */
 
 template<typename T, typename U>
 class Iterator {
@@ -36,6 +37,8 @@ private:
     iter_type m_it_;
 };
 
+/* Specific Collections provide one or more methods for obtaining
+ * new iterator instances that are compatible with the collection class. */
 template <class T>
 class Container {
     friend class Iterator<T, Container>;
@@ -64,6 +67,10 @@ public:
     }
 };
 
+/*  The client code may or may not know about the
+ * Concrete Iterator or Collection classes, for this
+ * implementation the container is generic so you can
+ * used with an int or with a custom class. */
 void ClientCode()
 {
     cout <<  "________________Iterator with int______________________________________" << endl;

@@ -6,11 +6,15 @@ using std::cout;
 
 class BaseComponent;
 
+/* The Mediator interface provides a method used by components to notify the mediator of various events.
+ * The mediator can respond to these events and transfer execution to other components. */
 class Mediator {
 public:
     virtual void Notify(BaseComponent *sender, string event) const = 0;
 };
 
+/* BaseComponent provides the basic functionality for storing
+ * an intermediary instance inside component objects. */
 class BaseComponent{
 protected:
     Mediator *mediator_;
@@ -21,6 +25,9 @@ public:
     }
 };
 
+/* Concrete Components implement various functionality.
+ * They are independent of other components.
+ * They are also independent of any particular classes of intermediaries. */
 class Component1 : public BaseComponent {
 public:
     void doA() {
@@ -45,6 +52,7 @@ public:
     }
 };
 
+/* Concrete Mediators implement collaborative behavior by coordinating individual components. */
 class ConcreteMediator : public Mediator {
 private:
     Component1 *component1_;

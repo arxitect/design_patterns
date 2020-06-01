@@ -6,6 +6,7 @@ using std::list;
 using std::string;
 using std::cout;
 
+
 class IObserver {
 public:
     virtual ~IObserver() = default;
@@ -20,6 +21,7 @@ public:
     virtual void notify() = 0;
 };
 
+/* The Subject owns some important status and notifies observers of its changes. */
 class Subject : public ISubject {
 private:
     list<IObserver *> listObserver_;
@@ -29,6 +31,7 @@ public:
         cout << "Goodbye, I was the Subject.\n";
     }
 
+    /* Subscription Management Methods. */
     void observerAmount() {
         cout << "There are " << listObserver_.size() << " observers in the list.\n";
     }

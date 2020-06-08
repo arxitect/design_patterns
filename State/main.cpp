@@ -4,6 +4,10 @@ using std::cout;
 
 class Context;
 
+/* The Base State class declares methods that all Concrete States
+ * must implement, and also provides a reference back to the Context
+ * object associated with the State. This backtrack can be used
+ * by States to transfer Context to another State. */
 class State {
 protected:
     Context *context_;
@@ -19,7 +23,9 @@ public:
     virtual void Handle2() = 0;
 };
 
-
+/* Context defines an interface of interest to customers.
+ * It also stores a reference to an instance of the Status
+ * subclass that displays the current state of the Context. */
 class Context {
 private:
     State *state_;
@@ -31,6 +37,8 @@ public:
     ~Context() {
         delete state_;
     }
+
+    /* Context allows you to modify the State object at run time. */
     void TransitionTo(State *state) {
         cout << "Context: Transition to " << typeid(*state).name() << ".\n";
         if (this->state_ != nullptr)
@@ -46,6 +54,8 @@ public:
     }
 };
 
+/* Concrete States implement various behaviors
+ * related to the Context state. */
 class ConcreteStateA : public State {
 public:
     void Handle1() override;
@@ -76,6 +86,7 @@ void ConcreteStateA::Handle1() {
     }
 }
 
+/* Client code */
 void ClientCode() {
     auto *context = new Context(new ConcreteStateA);
     context->Request1();

@@ -7,6 +7,8 @@ using std::cout;
 using std::string;
 using std::vector;
 
+/* The Strategy interface announces operations
+ * common to all supported versions of a certain algorithm. */
 class Strategy {
 public:
     virtual ~Strategy() = default;
@@ -14,9 +16,12 @@ public:
 };
 
 
+/* Context defines an interface of interest to client. */
 class Context
 {
-
+    /* The Context stores a link to one of the Strategy objects.
+     * The Context does not know a specific class of Strategy.
+     * He must work with all Strategies through the Strategy interface. */
 private:
     Strategy *strategy_;
 
@@ -26,11 +31,16 @@ public:
         delete this->strategy_;
     }
 
+    /* Usually, a Context allows you to replace
+     * a Strategy object at run time. */
     void setStrategy(Strategy *strategy) {
         delete this->strategy_;
         this->strategy_ = strategy;
     }
 
+    /* Instead of independently implementing multiple versions
+     * of the algorithm, Context delegates some work
+     * to the Strategy object. */
     void doSomeBusinessLogic() const {
         cout << "Context: Sorting data using the strategy (not sure how it'll do it)\n";
         string result = this->strategy_->doAlgorithm(vector<string>{"a", "e", "c", "b", "d"});
@@ -38,7 +48,8 @@ public:
     }
 };
 
-
+/* Concrete Strategies implement the algorithm following
+ * the basic interface of the Strategy. */
 class ConcreteStrategyA : public Strategy
 {
 public:
@@ -73,6 +84,8 @@ class ConcreteStrategyB : public Strategy
     }
 };
 
+/* Client code selects a specific strategy
+ * and passes it into context. */
 void ClientCode()
 {
     auto *context = new Context(new ConcreteStrategyA);

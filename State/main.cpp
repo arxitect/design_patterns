@@ -78,12 +78,10 @@ public:
 };
 
 void ConcreteStateA::Handle1() {
-    {
-        cout << "ConcreteStateA handles request1.\n";
-        cout << "ConcreteStateA wants to change the state of the context.\n";
+    cout << "ConcreteStateA handles request1.\n";
+    cout << "ConcreteStateA wants to change the state of the context.\n";
 
-        this->context_->TransitionTo(new ConcreteStateB);
-    }
+    this->context_->TransitionTo(new ConcreteStateB);
 }
 
 /* Client code */

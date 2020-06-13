@@ -2,6 +2,10 @@
 
 using std::cout;
 
+/* An AbstractClass defines a template method containing the skeleton of
+ * an algorithm consisting of calls to (usually) abstract primitive operations.
+ * Concrete subclasses should implement these operations, but leave the template
+ * method itself unchanged. */
 class AbstractClass {
 public:
     void templateMethod() const {
@@ -29,6 +33,9 @@ protected:
     virtual void hook2() const {}
 };
 
+/* Concrete classes must implement all the abstract
+ * operations of the base class. They can also override some
+ * operations with the default implementation. */
 class ConcreteClass1 : public AbstractClass {
 protected:
     void requiredOperations1() const override {
@@ -51,6 +58,11 @@ protected:
         cout << "ConcreteClass2 says: Overridden Hook1\n";
     }
 };
+
+/* Clientcode calls a template method to execute the algorithm.
+ * Clientcode does not need to know the specific class of the object
+ * that it works with, provided that it works with objects through the
+ * interface of their base class. */
 void ClientCode(AbstractClass *class_) {
     class_->templateMethod();
 }

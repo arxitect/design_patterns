@@ -6,6 +6,10 @@ using std::string;
 using std::cout;
 using std::array;
 
+/* The Visitor interface declares a set of visiting methods that
+ * correspond to component classes. The signature of the visit method
+ * allows the visitor to determine the specific class of the component
+ * with which he is dealing. */
 class ConcreteComponentA;
 class ConcreteComponentB;
 
@@ -15,6 +19,9 @@ public:
     virtual void visitConcreteComponentB(const ConcreteComponentB *element) const = 0;
 };
 
+/* The Component interface declares an accept method,
+ * which, as an argument, can be received by any object that
+ * implements the visitor interface. */
 class Component {
 public:
     virtual ~Component() = default;
@@ -22,6 +29,8 @@ public:
 
 };
 
+/* Each ConcreteComponent must implement the accept method in
+ * such a way that it invokes the visitor method corresponding to the component class. */
 class ConcreteComponentA : public Component {
 
 public:
@@ -44,6 +53,8 @@ public:
     }
 };
 
+/* Specific Visitors implement several versions of the same
+ * algorithm that can work with all classes of specific components. */
 class ConcreteVisitor1 : public Visitor {
 public:
     void visitConcreteComponentA(const ConcreteComponentA *element) const override {
@@ -69,6 +80,10 @@ public:
     }
 };
 
+/* Client code can perform visitor operations on any set
+ * of elements without figuring out their specific classes.
+ * The accept operation directs the call to the corresponding
+ * operation in the visitor's object. */
 void ClientCode(array<const Component *, 2> components, Visitor *visitor) {
     for (const Component *comp : components) {
         comp->accept(visitor);

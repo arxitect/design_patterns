@@ -2,6 +2,8 @@
 #include <string>
 
 using std::string;
+using std::cout;
+using std::endl;
 
 /* Each individual worker in the worker family must have a basic interface.
 All worker variations must implement this interface. */
@@ -61,7 +63,7 @@ public:
     }
 };
 
-/* AbstactFactory interface announced a set of methods that returns various abstract workers */
+/* AbstractFactory interface announced a set of methods that returns various abstract workers */
 class AbstractFactory {
 public:
     [[nodiscard]] virtual AbstractWorkerA *CreateWorkerA() const = 0;
@@ -88,9 +90,6 @@ public:
         return new ConcreteWorkerB2;
     }
 };
-
-using std::cout;
-using std::endl;
 
 /* Client code only works with factories and products through abstract types */
 void ClientCode(const AbstractFactory &factory) {

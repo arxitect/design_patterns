@@ -13,6 +13,7 @@ public:
     [[nodiscard]] string Operation1() const {
         return "Subsystem1: Ready!\n";
     }
+
     [[nodiscard]] string OperationN() const {
         return "Subsystem1: Go!\n";
     }
@@ -23,6 +24,7 @@ public:
     [[nodiscard]] string Operation1() const {
         return "Subsystem2: Get Ready!\n";
     }
+
     [[nodiscard]] string OperationZ() const {
         return "Subsystem2: Fire!\n";
     }
@@ -42,10 +44,12 @@ public:
         this->subsystem1_ = subsystem1 ?: new Subsystem1;
         this->subsystem2_ = subsystem2 ?: new Subsystem2;
     }
+
     ~Facade() {
         delete subsystem1_;
         delete subsystem2_;
     }
+
     string Operation() {
         string result = "Facade initializes subsystems:\n";
         result += this->subsystem1_->Operation1();

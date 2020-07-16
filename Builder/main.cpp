@@ -78,8 +78,8 @@ class Director {
 private:
     Builder *builder;
 public:
-    void setBuilder(Builder *builder) {
-        this->builder = builder;
+    void setBuilder(Builder *pBuilder) {
+        this->builder = pBuilder;
     }
 
     void BuildMinimalViableSuperBot() {

@@ -19,6 +19,7 @@ public:
     void SetParent(Component *parent) {
         this->parent_ = parent;
     }
+
     [[nodiscard]] Component *GetParent() const {
         return this->parent_;
     }
@@ -26,6 +27,7 @@ public:
      * management operations directly in the Component base class. */
     virtual void Add(Component *component) {}
     virtual void Remove(Component *component) {}
+
     [[nodiscard]] virtual bool isComposite() const {
         return false;
     }
@@ -57,6 +59,7 @@ public:
         children_.remove(component);
         component->SetParent(nullptr);
     }
+
     [[nodiscard]] bool isComposite() const override {
         return true;
     }
@@ -76,11 +79,13 @@ public:
 
 /* Client code works with all
  * components through the base interface. */
-void ClientCode(Component *component) {
+void ClientCode(Component *component)
+{
     cout << "RESULT: " << component->Operation();
 }
 
-void ClientCode2(Component *component1, Component *component2) {
+void ClientCode2(Component *component1, Component *component2)
+{
     if (component1->isComposite()) {
         component1->Add(component2);
     }

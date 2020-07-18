@@ -46,6 +46,7 @@ public:
         this->state_ = state;
         this->state_->setContext(this);
     }
+
     void Request1() {
         this->state_->Handle1();
     }
@@ -73,6 +74,7 @@ public:
     void Handle2() override {
         cout << "ConcreteStateB handles request2.\n";
         cout << "ConcreteStateB wants to change the state of the context.\n";
+
         this->context_->TransitionTo(new ConcreteStateA);
     }
 };
@@ -85,14 +87,16 @@ void ConcreteStateA::Handle1() {
 }
 
 /* Client code */
-void ClientCode() {
+void ClientCode()
+{
     auto *context = new Context(new ConcreteStateA);
     context->Request1();
     context->Request2();
     delete context;
 }
 
-int main() {
+int main()
+{
     ClientCode();
     return 0;
 }

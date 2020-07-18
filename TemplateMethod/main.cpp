@@ -59,8 +59,8 @@ protected:
     }
 };
 
-/* Clientcode calls a template method to execute the algorithm.
- * Clientcode does not need to know the specific class of the object
+/* ClientCode calls a template method to execute the algorithm.
+ * ClientCode does not need to know the specific class of the object
  * that it works with, provided that it works with objects through the
  * interface of their base class. */
 void ClientCode(AbstractClass *class_) {
@@ -70,7 +70,7 @@ void ClientCode(AbstractClass *class_) {
 
 int main()
 {
-    std::cout << "Same client code can work with different subclasses:\n";
+    cout << "Same client code can work with different subclasses:\n";
     auto *concreteClass1 = new ConcreteClass1;
     ClientCode(concreteClass1);
     cout << "\n";

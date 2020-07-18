@@ -21,10 +21,12 @@ public:
 class Proxy : public Subject {
 private:
     RealSubject *realSubject_;
+
     bool checkAccess() const {
         cout << "Proxy: checking access prior to firing a real request.\n";
         return true;
     }
+
     void logAccess() const {
         cout << "Proxy: logging the time of request.\n";
     }

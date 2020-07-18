@@ -33,8 +33,7 @@ struct UniqueState
     string owner_;
     string plates_;
 
-    UniqueState(const string &owner, const string &plates)
-    : owner_(owner), plates_(plates){}
+    UniqueState(const string &owner, const string &plates) : owner_(owner), plates_(plates){}
 
     friend ostream &operator<<(ostream &os, const UniqueState &us)
     {
@@ -60,7 +59,7 @@ public:
         return sharedState_;
     }
     void Operation(const UniqueState &uniqueState) const {
-        cout << "Flyweight: Displayng shared (" << *sharedState_ << ") and unique ("
+        cout << "Flyweight: Displaying shared (" << *sharedState_ << ") and unique ("
              << uniqueState << ") state.\n";
     }
 };

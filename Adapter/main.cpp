@@ -33,7 +33,9 @@ class Adapter : public Target {
 private:
     Adaptee *adaptee;
 public:
-    explicit Adapter(Adaptee *adaptee1) : adaptee(adaptee1) {}
+    explicit Adapter(Adaptee *adaptee1) : adaptee(adaptee1) {
+
+    }
     [[nodiscard]] string Request() const override {
         string toReverse = this->adaptee->SpecificRequest();
         std::reverse(toReverse.begin(), toReverse.end());
@@ -41,7 +43,7 @@ public:
     }
 };
 
-/*  Клиентский код поддерживает все классы, использующие целевой интерфейс. */
+/*  The client code supports all classes that use the target interface. */
 void ClientCode(const Target *target) {
     cout << target->Request();
 }
@@ -49,15 +51,17 @@ void ClientCode(const Target *target) {
 int main()
 {
     cout << "Client: I can work just fine with the Target objects:\n";
-    Target *target = new Target;
+    auto target = new Target;
     ClientCode(target);
     cout << "\n\n";
-    Adaptee *adaptee = new Adaptee;
+
+    auto adaptee = new Adaptee;
     cout << "Client: The Adaptee class has a weird interface. See, I don't understand it:\n";
     cout << "Adaptee: " << adaptee->SpecificRequest();
     cout << "\n\n";
+
     cout << "Client: But I can work with it via the Adapter:\n";
-    Adapter *adapter = new Adapter(adaptee);
+    auto adapter = new Adapter(adaptee);
     ClientCode(adapter);
     cout << "\n";
 

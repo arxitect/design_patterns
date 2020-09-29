@@ -28,7 +28,7 @@ class ConcreteWorkerA2 : public AbstractWorkerA {
 };
 
 /* The base interface of another worker. All workers can interact with
- * each other, but the correct interaction is possible only between workers of the same variation*/
+ * each other, but the correct interaction is possible only between workers of the same variation */
 class AbstractWorkerB {
 public:
     virtual ~AbstractWorkerB() = default;
@@ -104,13 +104,15 @@ void ClientCode(const AbstractFactory &factory) {
 int main()
 {
     cout << "Testing client with the first factory type:" << endl;
-    ConcreteFactory1 *f1 = new ConcreteFactory1;
+    auto f1 = new ConcreteFactory1;
     ClientCode(*f1);
     delete f1;
     cout << endl;
+
     cout << "Testing the same client code with second factory type: " << endl;
-    ConcreteFactory2 *f2 = new ConcreteFactory2;
+    auto f2 = new ConcreteFactory2;
     ClientCode(*f2);
     delete f2;
+
     return 0;
 }

@@ -98,7 +98,7 @@ public:
  * The final result is extracted from the builder. */
 void ClientCode(Director &director)
 {
-    SuperBotBuilder* builder = new SuperBotBuilder();
+    auto builder = new SuperBotBuilder();
     director.setBuilder(builder);
     cout << "Basic bot: \n";
     director.BuildMinimalViableSuperBot();
@@ -118,7 +118,7 @@ void ClientCode(Director &director)
 
 int main()
 {
-    Director *director = new Director;
+    auto director = new Director;
     ClientCode(*director);
     delete director;
     return 0;

@@ -6,3 +6,6 @@ Here are presented design patterns with detailed explanations and comments.
 
 - [Abstract factory](AbstractFactory/main.cpp)
 - [Adapter](Adapter/main.cpp)
+- [Bridge](Bridge/main.cpp)
+- [Builder](Builder/main.cpp)
+- [Chain of responsibility](ChainOfResponsibility/main.cpp)

@@ -62,7 +62,7 @@ void ClientCode(const Abstraction& abstraction) {
  * combination of abstraction and implementation. */
 int main() {
     Implementation* implementation = new ConcreteImplementationA;
-    Abstraction* abstraction = new Abstraction(implementation);
+    auto abstraction = new Abstraction(implementation);
     ClientCode(*abstraction);
     cout << "\n";
     delete implementation;

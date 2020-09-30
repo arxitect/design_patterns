@@ -86,9 +86,9 @@ void ClientCode(Handler &handler)
 
 /* Another part of the client code creates the chain itself. */
 int main() {
-    MonkeyHandler *monkey = new MonkeyHandler;
-    SquirrelHandler *squirrel = new SquirrelHandler;
-    DogHandler *dog = new DogHandler;
+    auto monkey = new MonkeyHandler;
+    auto squirrel = new SquirrelHandler;
+    auto dog = new DogHandler;
     monkey->SetNext(squirrel)->SetNext(dog);
 
     //The client should be able to send a request to any handler

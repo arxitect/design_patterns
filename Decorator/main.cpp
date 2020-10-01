@@ -53,16 +53,18 @@ public:
 };
 
 /* Client code works with all objects using the Component interface. */
-void ClientCode(Component* component) {
+void ClientCode(Component* component)
+{
     cout << "RESULT: " << component->Operation();
 }
 
-int main() {
-
+int main()
+{
     Component* simple = new ConcreteComponent;
     cout << "Client: I've got a simple component:\n";
     ClientCode(simple);
     cout << "\n\n";
+
     Component* decorator1 = new ConcreteDecoratorA(simple);
     Component* decorator2 = new ConcreteDecoratorB(decorator1);
     cout << "Client: Now I've got a decorated component:\n";

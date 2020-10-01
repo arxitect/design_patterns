@@ -73,9 +73,9 @@ void ClientCode(Facade *facade)
  * these objects instead of allowing the Facade to create new instances. */
 int main()
 {
-    Subsystem1 *subsystem1 = new Subsystem1;
-    Subsystem2 *subsystem2 = new Subsystem2;
-    Facade *facade = new Facade(subsystem1, subsystem2);
+    auto subsystem1 = new Subsystem1;
+    auto subsystem2 = new Subsystem2;
+    auto facade = new Facade(subsystem1, subsystem2);
     ClientCode(facade);
     delete facade;
 

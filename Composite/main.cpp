@@ -111,6 +111,7 @@ int main()
     branch2->Add(leaf_3);
     tree->Add(branch1);
     tree->Add(branch2);
+
     cout << "Client: Now I've got a composite tree:\n";
     ClientCode(tree);
     cout << "\n\n";
@@ -126,5 +127,6 @@ int main()
     delete leaf_1;
     delete leaf_2;
     delete leaf_3;
+
     return 0;
 }

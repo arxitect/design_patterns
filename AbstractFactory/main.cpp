@@ -92,7 +92,8 @@ public:
 };
 
 /* Client code only works with factories and products through abstract types */
-void ClientCode(const AbstractFactory &factory) {
+void ClientCode(const AbstractFactory &factory)
+{
     const AbstractWorkerA *workerA = factory.CreateWorkerA();
     const AbstractWorkerB *workerB = factory.CreateWorkerB();
     cout << workerB->UseFunctionB() << endl;

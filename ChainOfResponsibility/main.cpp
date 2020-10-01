@@ -85,7 +85,8 @@ void ClientCode(Handler &handler)
 }
 
 /* Another part of the client code creates the chain itself. */
-int main() {
+int main()
+{
     auto monkey = new MonkeyHandler;
     auto squirrel = new SquirrelHandler;
     auto dog = new DogHandler;

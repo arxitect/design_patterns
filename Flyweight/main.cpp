@@ -20,7 +20,7 @@ struct SharedState
     string brand_;
     string model_;
     string color_;
-    SharedState(const string &brand,const string &model,const string &color)
+    SharedState(const string &brand,const string &model, const string &color)
     : brand_(brand), model_(model), color_(color){}
 
     friend ostream &operator<<(ostream &os, const SharedState &ss) {
@@ -117,7 +117,7 @@ void addCarToPoliceDatabase(FlyweightFactory &ff, const string &plates, const st
 
 int main()
 {
-    FlyweightFactory *factory = new FlyweightFactory({
+    auto factory = new FlyweightFactory({
         {"Chevrolet", "Camaro2018", "pink"},
         {"Mercedes Benz", "C300", "black"},
         {"Mercedes Benz", "C500", "red"},

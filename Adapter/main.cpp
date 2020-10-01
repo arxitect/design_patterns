@@ -44,7 +44,8 @@ public:
 };
 
 /*  The client code supports all classes that use the target interface. */
-void ClientCode(const Target *target) {
+void ClientCode(const Target *target)
+{
     cout << target->Request();
 }
 

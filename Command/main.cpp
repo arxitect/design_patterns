@@ -86,9 +86,9 @@ public:
 /* Client code can parameterize the sender with any commands. */
 int main()
 {
-    Invoker *invoker = new Invoker;
+    auto invoker = new Invoker;
     invoker->setOnStart(new SimpleCommand("Say Hi!"));
-    Receiver *receiver = new Receiver;
+    auto receiver = new Receiver;
     invoker->setOnFinish(new ComplexCommand(receiver, "Send email", "Save report"));
     invoker->doSomethingImportant();
 

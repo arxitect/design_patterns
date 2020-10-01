@@ -54,13 +54,15 @@ public:
     }
 };
 
-void ClientCode(const Abstraction& abstraction) {
+void ClientCode(const Abstraction& abstraction)
+{
     cout << abstraction.Operation();
 }
 
 /* Client code must work with any pre-configured
  * combination of abstraction and implementation. */
-int main() {
+int main()
+{
     Implementation* implementation = new ConcreteImplementationA;
     auto abstraction = new Abstraction(implementation);
     ClientCode(*abstraction);

@@ -6,8 +6,10 @@ using std::cout;
 
 class BaseComponent;
 
-/* The Mediator interface provides a method used by components to notify the mediator of various events.
- * The mediator can respond to these events and transfer execution to other components. */
+/* The Mediator interface provides a method used by
+ * components to notify the mediator of various events.
+ * The mediator can respond to these events and transfer
+ * execution to other components. */
 class Mediator {
 public:
     virtual void Notify(BaseComponent *sender, string event) const = 0;
@@ -52,7 +54,8 @@ public:
     }
 };
 
-/* Concrete Mediators implement collaborative behavior by coordinating individual components. */
+/* Concrete Mediators implement collaborative
+ * behavior by coordinating individual components. */
 class ConcreteMediator : public Mediator {
 private:
     Component1 *component1_;
@@ -75,13 +78,15 @@ public:
     }
 };
 
-void ClientCode() {
-    Component1 *c1 = new Component1;
-    Component2 *c2 = new Component2;
-    ConcreteMediator *mediator = new ConcreteMediator(c1, c2);
+void ClientCode()
+{
+    auto c1 = new Component1;
+    auto c2 = new Component2;
+    auto mediator = new ConcreteMediator(c1, c2);
     cout << "Client triggers operation A.\n";
     c1->doA();
     cout << "\n";
+
     cout << "Client triggers operation D.\n";
     c2->doD();
 
@@ -90,7 +95,8 @@ void ClientCode() {
     delete mediator;
 }
 
-int main() {
+int main()
+{
     ClientCode();
     return 0;
 }

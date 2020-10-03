@@ -12,23 +12,23 @@ template<typename T, typename U>
 class Iterator {
 public:
     typedef typename vector<T>::iterator iter_type;
-    Iterator(U *p_data, bool reverse = false) : m_p_data_(p_data) {
+    explicit Iterator(U *p_data, bool reverse = false) : m_p_data_(p_data) {
         m_it_ = m_p_data_->m_data_.begin();
     }
 
-    void First() {
+    void first() {
         m_it_ = m_p_data_->m_data_.begin();
     }
 
-    void Next() {
+    void next() {
         m_it_++;
     }
 
-    bool IsDone() {
+    bool isDone() {
         return (m_it_ == m_p_data_->m_data_.end());
     }
 
-    iter_type Current() {
+    iter_type current() {
         return m_it_;
     }
 
@@ -45,7 +45,7 @@ class Container {
 private:
     vector<T> m_data_;
 public:
-    void Add(T a) {
+    void add(T a) {
         m_data_.push_back(a);
     };
     Iterator<T, Container> *createIterator() {
@@ -57,11 +57,12 @@ class Data {
 private:
     int m_data_;
 public:
-    Data(int a = 0) : m_data_(a) {}
+    explicit Data(int a = 0) : m_data_(a) {}
 
     void setData(int a) {
         m_data_ = a;
     }
+
     int data() {
         return m_data_;
     }
@@ -77,23 +78,23 @@ void ClientCode()
     Container<int> cont;
 
     for(int i = 0;i < 10;i++)
-        cont.Add(i);
+        cont.add(i);
 
     Iterator<int, Container<int>> *it = cont.createIterator();
-    for(it->First(); !it->IsDone(); it->Next())
-        cout << *it->Current() << endl;
+    for(it->first(); !it->isDone(); it->next())
+        cout << *it->current() << endl;
 
     Container<Data> cont2;
     Data a(100), b(1000), c(10000);
-    cont2.Add(a);
-    cont2.Add(b);
-    cont2.Add(c);
+    cont2.add(a);
+    cont2.add(b);
+    cont2.add(c);
 
     cout << "________________Iterator with custom Class______________________________" << endl;
 
     Iterator<Data, Container<Data>> *it2 = cont2.createIterator();
-    for (it2->First(); !it2->IsDone(); it2->Next())
-        cout << it2->Current()->data() << endl;
+    for (it2->first(); !it2->isDone(); it2->next())
+        cout << it2->current()->data() << endl;
 }
 
 int main()

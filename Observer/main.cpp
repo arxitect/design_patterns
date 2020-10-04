@@ -27,7 +27,7 @@ private:
     list<IObserver *> listObserver_;
     string message_;
 public:
-    virtual ~Subject() {
+    ~Subject() override {
         cout << "Goodbye, I was the Subject.\n";
     }
 
@@ -72,12 +72,12 @@ private:
     static int staticNumber_;
     int number_;
 public:
-    Observer(Subject &subject) : subject_(subject) {
+    explicit Observer(Subject &subject) : subject_(subject) {
         this->subject_.attach(this);
         cout << "Hi, I'm the Observer \"" << ++Observer::staticNumber_ << "\".\n";
         this->number_ = Observer::staticNumber_;
     }
-    virtual ~Observer(){
+    ~Observer() override{
         cout << "Goodbye, I was the Observer \"" << this->number_ << "\".\n";
     }
 
@@ -103,10 +103,10 @@ int Observer::staticNumber_ = 0;
 
 void ClientCode()
 {
-    Subject *subject = new Subject;
-    Observer *observer1 = new Observer(*subject);
-    Observer *observer2 = new Observer(*subject);
-    Observer *observer3 = new Observer(*subject);
+    auto subject = new Subject;
+    auto observer1 = new Observer(*subject);
+    auto observer2 = new Observer(*subject);
+    auto observer3 = new Observer(*subject);
     Observer *observer4;
     Observer *observer5;
 

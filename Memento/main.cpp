@@ -100,6 +100,7 @@ public:
         cout << "\nCaretaker: Saving Originator's state...\n";
         this->mementos_.push_back(this->originator_->Save());
     }
+
     void Undo() {
         if (!this->mementos_.size()) {
             return;
@@ -113,6 +114,7 @@ public:
             this->Undo();
         }
     }
+
     void ShowHistory() const {
         cout << "Caretaker: Here's the list of mementos:\n";
         for (Memento *memento : this->mementos_) {
@@ -123,18 +125,23 @@ public:
 
 /* Client code */
 void ClientCode() {
-    Originator *originator = new Originator("Super-duper-super-puper-super.");
-    Caretaker *caretaker = new Caretaker(originator);
+    auto originator = new Originator("Super-duper-super-puper-super.");
+    auto caretaker = new Caretaker(originator);
     caretaker->Backup();
     originator->DoSomething();
+
     caretaker->Backup();
     originator->DoSomething();
+
     caretaker->Backup();
     originator->DoSomething();
     cout << "\n";
+
     caretaker->ShowHistory();
+
     cout << "\nClient: Now, let's rollback!\n\n";
     caretaker->Undo();
+
     cout << "\nClient: Once more!\n\n";
     caretaker->Undo();
 
@@ -143,7 +150,7 @@ void ClientCode() {
 }
 
 int main() {
-    std::srand(static_cast<unsigned int>(std::time(NULL)));
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
     ClientCode();
     return 0;
 }

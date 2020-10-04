@@ -17,3 +17,5 @@ Here are presented design patterns with detailed explanations and comments.
 - [Flyweight](Flyweight/main.cpp)
 - [Iterator](Iterator/main.cpp)
 - [Mediator](Mediator/main.cpp)
+- [Memento](Memento/main.cpp)
+- [Observer](Observer/main.cpp)

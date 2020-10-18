@@ -21,13 +21,15 @@ private:
     Handler *next_handler_;
 public:
     AbstractHandler() : next_handler_(nullptr) {}
+
     Handler *SetNext(Handler *handler) override {
         this->next_handler_ = handler;
-        //Returning the handler from here will allow the handlers to be linked in a simple way,
-        //like this:
-        // monkey->setNext(squirrel)->setNext(dog);
+        // Returning the handler from here will allow the handlers to be linked in a simple way,
+        // like this:
+        //  monkey->setNext(squirrel)->setNext(dog);
         return handler;
     }
+
     string Handle(string request) override {
         if (this->next_handler_)
             return this->next_handler_->Handle(request);
@@ -92,7 +94,7 @@ int main()
     auto dog = new DogHandler;
     monkey->SetNext(squirrel)->SetNext(dog);
 
-    //The client should be able to send a request to any handler
+    // The client should be able to send a request to any handler
     cout << "Chain: Monkey > Squirrel > Dog\n\n";
     ClientCode(*monkey);
     cout << "\n";

@@ -22,6 +22,7 @@ public:
     explicit Prototype(string prototypeNameVal) : prototypeName(prototypeNameVal) {}
     virtual ~Prototype() = default;
     [[nodiscard]] virtual Prototype *Clone()const = 0;
+
     virtual void Method(float prototypeFieldval) {
         this->prototypeField = prototypeFieldval;
         cout << "Call method from: " << prototypeName << " with field: " << prototypeField << endl;
@@ -29,14 +30,14 @@ public:
 };
 
 /* ConcretePrototype1 is a Sub-Class of Prototype and implement the Clone Method. */
-class ConcretePrototype1 : public Prototype{
+class ConcretePrototype1 : public Prototype {
 private:
     float concretePrototypeField;
 public:
     ConcretePrototype1(string prototypeNameVal, float concretePrototypeFieldVal)
         : Prototype(prototypeNameVal), concretePrototypeField(concretePrototypeFieldVal){}
 
-    /* Notice that Clone method return a Pointer to a new ConcretePrototype1 */
+    // Notice that Clone method return a Pointer to a new ConcretePrototype1
     [[nodiscard]] Prototype *Clone() const override {
         return new ConcretePrototype1(*this);
     }
@@ -68,20 +69,20 @@ public:
         prototypes[Type::PROTOTYPE_1] = new ConcretePrototype1("PROTOTYPE_1 ", 50.f);
         prototypes[Type::PROTOTYPE_2] = new ConcretePrototype2("PROTOTYPE_2 ", 60.f);
     }
+
     ~PrototypeFactory() {
         delete prototypes[Type::PROTOTYPE_1];
         delete prototypes[Type::PROTOTYPE_2];
     }
 
     /* Notice here that you just need to specify the type of the prototype you
-    * want and the method will create from the object with this type.
-    */
+    * want and the method will create from the object with this type. */
     Prototype *CreatePrototype(Type type) {
         return prototypes[type]->Clone();
     }
 };
 
-void Client(PrototypeFactory &prototype_factory)
+void ClientCode(PrototypeFactory &prototype_factory)
 {
     cout << "Let's create a Prototype 1\n";
 
@@ -100,8 +101,8 @@ void Client(PrototypeFactory &prototype_factory)
 
 int main()
 {
-    PrototypeFactory *prototypeFactory = new PrototypeFactory();
-    Client(*prototypeFactory);
+    auto prototypeFactory = new PrototypeFactory();
+    ClientCode(*prototypeFactory);
     delete prototypeFactory;
 
     return 0;

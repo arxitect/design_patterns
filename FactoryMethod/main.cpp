@@ -81,6 +81,7 @@ int main()
     Creator *creator = new ConcreteCreator1();
     ClientCode(*creator);
     cout << endl;
+
     cout << "App: Launched with ConcreteCreator 2.\n";
     Creator *creator2 = new ConcreteCreator2();
     ClientCode(*creator2);

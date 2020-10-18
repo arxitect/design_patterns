@@ -31,7 +31,7 @@ public:
         cout << "Goodbye, I was the Subject.\n";
     }
 
-    /* Subscription Management Methods. */
+    // Subscription Management Methods.
     void observerAmount() {
         cout << "There are " << listObserver_.size() << " observers in the list.\n";
     }

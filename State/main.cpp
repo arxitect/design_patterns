@@ -34,6 +34,7 @@ public:
     explicit Context(State *state) : state_(nullptr) {
         this->TransitionTo(state);
     }
+
     ~Context() {
         delete state_;
     }
@@ -41,8 +42,7 @@ public:
     /* Context allows you to modify the State object at run time. */
     void TransitionTo(State *state) {
         cout << "Context: Transition to " << typeid(*state).name() << ".\n";
-        if (this->state_ != nullptr)
-            delete this->state_;
+        delete this->state_;
         this->state_ = state;
         this->state_->setContext(this);
     }
@@ -50,6 +50,7 @@ public:
     void Request1() {
         this->state_->Handle1();
     }
+
     void Request2() {
         this->state_->Handle2();
     }
@@ -71,6 +72,7 @@ public:
     void Handle1() override {
         cout << "ConcreteStateB handles request1.\n";
     }
+
     void Handle2() override {
         cout << "ConcreteStateB handles request2.\n";
         cout << "ConcreteStateB wants to change the state of the context.\n";

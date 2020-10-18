@@ -4,9 +4,9 @@
 using std::string;
 using std::cout;
 
-/*The Singleton class provides the `GetInstance` method, which behaves like
+/* The Singleton class provides the `GetInstance` method, which behaves like
  * an alternative constructor and allows clients to receive
- * the same instance of the class with every call.*/
+ * the same instance of the class with every call. */
 class Singleton
 {
 protected:
@@ -29,7 +29,7 @@ public:
 
 Singleton* Singleton::singleton = nullptr;
 
-//Static methods should be defined outside the class.
+// Static methods should be defined outside the class.
 Singleton *Singleton::getInstance(const string &value) {
     if(singleton == nullptr)
         singleton = new Singleton(value);

@@ -27,7 +27,7 @@ protected:
     Component *component_;
 public:
     explicit Decorator(Component *component) : component_(component) {};
-    /* The decorator delegates all the work to the wrapped component. */
+    // The decorator delegates all the work to the wrapped component.
     [[nodiscard]] string Operation() const override {
         return this->component_->Operation();
     }
@@ -38,6 +38,7 @@ public:
 class ConcreteDecoratorA : public Decorator {
 public:
     explicit ConcreteDecoratorA(Component* component) : Decorator(component) {}
+
     [[nodiscard]] string Operation() const override {
         return "ConcreteDecoratorA(" + Decorator::Operation() + ")";
     }

@@ -76,6 +76,7 @@ public:
     [[nodiscard]] AbstractWorkerA *CreateWorkerA() const override {
         return new ConcreteWorkerA1;
     }
+
     [[nodiscard]] AbstractWorkerB *CreateWorkerB() const override {
         return new ConcreteWorkerB1;
     }
@@ -86,6 +87,7 @@ public:
     [[nodiscard]] AbstractWorkerA *CreateWorkerA() const override {
         return new ConcreteWorkerA2;
     }
+
     [[nodiscard]] AbstractWorkerB *CreateWorkerB() const override {
         return new ConcreteWorkerB2;
     }

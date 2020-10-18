@@ -36,6 +36,7 @@ public:
     explicit Adapter(Adaptee *adaptee1) : adaptee(adaptee1) {
 
     }
+
     [[nodiscard]] string Request() const override {
         string toReverse = this->adaptee->SpecificRequest();
         std::reverse(toReverse.begin(), toReverse.end());

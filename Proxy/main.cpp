@@ -59,11 +59,12 @@ void ClientCode(const Subject &subject)
 int main()
 {
     cout << "Client: Executing the client code with a real subject:\n";
-    RealSubject *realSubject = new RealSubject;
+    auto realSubject = new RealSubject;
     ClientCode(*realSubject);
     cout << "\n";
+
     cout << "Client: Executing the same client code with a proxy:\n";
-    Proxy *proxy = new Proxy(realSubject);
+    auto proxy = new Proxy(realSubject);
     ClientCode(*proxy);
 
     delete realSubject;

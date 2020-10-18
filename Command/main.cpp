@@ -42,8 +42,8 @@ private:
     string a_;
     string b_;
 public:
-    /* Complex commands can accept one or more recipient
-     * objects along with any context data through the constructor. */
+    // Complex commands can accept one or more recipient
+    // objects along with any context data through the constructor.
     ComplexCommand(Receiver *receiver, string a, string b) : receiver_(receiver), a_(a), b_(b) {}
 
     void Execute() const override {

@@ -58,6 +58,7 @@ public:
     [[nodiscard]] SharedState *sharedState() const {
         return sharedState_;
     }
+
     void Operation(const UniqueState &uniqueState) const {
         cout << "Flyweight: Displaying shared (" << *sharedState_ << ") and unique ("
              << uniqueState << ") state.\n";
@@ -73,7 +74,7 @@ class FlyweightFactory
 private:
     unordered_map<string , Flyweight> flyweights;
 
-    /* Returns the hash of the Flyweight string for the given state. */
+    // Returns the hash of the Flyweight string for the given state.
     string GetKey(const SharedState &sharedState) const {
         return sharedState.brand_ + "_" + sharedState.model_ + "_" + sharedState.color_;
     }
@@ -85,7 +86,8 @@ public:
                                         (this->GetKey(sharedState), Flyweight(&sharedState)));
         }
     }
-    /* Returns an existing Flyweight with the specified state or creates a new one. */
+
+    // Returns an existing Flyweight with the specified state or creates a new one.
     Flyweight GetFlyweight(const SharedState &sharedState){
         string key = this->GetKey(sharedState);
         if(this->flyweights.find(key) == this->flyweights.end()) {

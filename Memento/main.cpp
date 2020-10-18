@@ -28,14 +28,17 @@ public:
         time_t now = std::time(0);
         this->date_ = std::ctime(&now);
     }
-    /* The Originator uses this method when restoring his state. */
+
+    // The Originator uses this method when restoring his state.
     string state() const override {
         return this->state_;
     }
-    /* Other methods are used by the Caretaker to display metadata. */
+
+    // Other methods are used by the Caretaker to display metadata.
     string getName() const override {
         return this->date_ + " / (" + this->state_.substr(0, 9) + "...)";
     }
+
     string date() const override {
         return this->date_;
     }
@@ -65,28 +68,29 @@ public:
         cout << "Originator: My initial state is: " << this->state_ << "\n";
     }
 
-    /* Originator business logic can affect its internal state. Therefore, the client must back up the
-     * state using the save method before running the business logic methods. */
+    //Originator business logic can affect its internal state. Therefore, the client must back up the
+    //state using the save method before running the business logic methods.
     void DoSomething() {
         cout << "Originator: I'm doing something important.\n";
         this->state_ = this->GenerateRandomString(30);
         cout << "Originator: and my state has changed to: " << this->state_ << "\n";
     }
 
-    /* Saves the current state */
+    // Saves the current state
     Memento *Save() {
         return new ConcreteMemento(this->state_);
     }
 
-    /* Restores Originator state */
+    // Restores Originator state
     void Restore(Memento *memento) {
         this->state_ = memento->state();
         cout << "Originator: My state has changed to: " << this->state_ << "\n";
     }
 };
 
-/* The Caretaker does not depend on the class of a particular Memento. Thus, he does not have access to the state of
- * the creator stored inside the Memento. It works with all Memento through the Memento's basic interface. */
+/* The Caretaker does not depend on the class of a particular Memento.
+ * Thus, he does not have access to the state of the creator stored
+ * inside the Memento. It works with all Memento through the Memento's basic interface. */
 class Caretaker {
 private:
     vector<Memento *> mementos_;
@@ -124,7 +128,8 @@ public:
 };
 
 /* Client code */
-void ClientCode() {
+void ClientCode()
+{
     auto originator = new Originator("Super-duper-super-puper-super.");
     auto caretaker = new Caretaker(originator);
     caretaker->Backup();

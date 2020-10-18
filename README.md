@@ -19,3 +19,7 @@ Here are presented design patterns with detailed explanations and comments.
 - [Mediator](Mediator/main.cpp)
 - [Memento](Memento/main.cpp)
 - [Observer](Observer/main.cpp)
+- [Prototype](Prototype/main.cpp)
+- [Proxy](Proxy/main.cpp)
+- [Singleton](Singleton/main.cpp)
+- [Singleton](State/main.cpp)

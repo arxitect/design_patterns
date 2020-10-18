@@ -36,6 +36,7 @@ public:
         cout << "Component 1 does A.\n";
         this->mediator_->Notify(this, "A");
     }
+
     void doB() {
         cout << "Component 1 does B.\n";
         this->mediator_->Notify(this, "B");
@@ -48,6 +49,7 @@ public:
         cout << "Component 2 does C.\n";
         this->mediator_->Notify(this, "C");
     }
+
     void doD() {
         cout << "Component 2 does D.\n";
         this->mediator_->Notify(this, "D");
@@ -65,6 +67,7 @@ public:
         this->component1_->setMediator(this);
         this->component2_->setMediator(this);
     }
+
     void Notify(BaseComponent *sender, string event) const override {
         if (event == "A") {
             cout << "Mediator reacts on A and triggers following operations:\n";

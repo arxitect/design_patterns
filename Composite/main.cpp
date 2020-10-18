@@ -12,8 +12,8 @@ using std::cout;
 class Component {
 protected:
     Component *parent_;
-    /* If necessary, the base Component can declare an interface for
-     * installing and receiving the parent of the component in the tree structure. */
+    // If necessary, the base Component can declare an interface for
+    // installing and receiving the parent of the component in the tree structure.
 public:
     virtual ~Component() = default;
     void SetParent(Component *parent) {
@@ -23,8 +23,8 @@ public:
     [[nodiscard]] Component *GetParent() const {
         return this->parent_;
     }
-    /* In some cases, it is advisable to define descendant
-     * management operations directly in the Component base class. */
+    // In some cases, it is advisable to define descendant
+    // management operations directly in the Component base class.
     virtual void Add(Component *component) {}
     virtual void Remove(Component *component) {}
 

@@ -47,8 +47,8 @@ public:
 /* You can extend the Abstraction without changing the implementation classes. */
 class ExtendedAbstraction : public Abstraction {
 public:
-    explicit ExtendedAbstraction(Implementation* implementation) : Abstraction(implementation) {
-    }
+    explicit ExtendedAbstraction(Implementation* implementation) : Abstraction(implementation) {}
+
     [[nodiscard]] string Operation() const override {
         return "ExtendedAbstraction: Extended operation with:\n" + this->implementation_->OperationImplementation();
     }

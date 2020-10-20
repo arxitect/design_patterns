@@ -36,7 +36,7 @@ public:
         visitor->visitConcreteComponentA(this);
     }
 
-    string exclusiveMethodOfConcreteComponentA() const {
+    [[nodiscard]] string exclusiveMethodOfConcreteComponentA() const {
         return "A";
     }
 };
@@ -47,7 +47,7 @@ public:
         visitor->visitConcreteComponentB(this);
     }
 
-    string specialMethodOfConcreteComponentB() const {
+    [[nodiscard]] string specialMethodOfConcreteComponentB() const {
         return "B";
     }
 };
@@ -88,19 +88,24 @@ void ClientCode(array<const Component *, 2> components, Visitor *visitor)
 }
 
 int main() {
-    array<const Component *, 2> components = {new ConcreteComponentA,new ConcreteComponentB};
+    array<const Component *, 2> components = {
+        new ConcreteComponentA,
+        new ConcreteComponentB
+    };
+
     cout << "The client code works with all visitors via the base Visitor interface:\n";
-    auto *visitor1 = new ConcreteVisitor1;
+    auto visitor1 = new ConcreteVisitor1;
     ClientCode(components, visitor1);
     cout << "\n";
 
     cout << "It allows the same client code to work with different types of visitors:\n";
-    auto *visitor2 = new ConcreteVisitor2;
+    auto visitor2 = new ConcreteVisitor2;
     ClientCode(components, visitor2);
 
     for (const Component *comp : components) {
         delete comp;
     }
+
     delete visitor1;
     delete visitor2;
 

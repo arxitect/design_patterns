@@ -22,4 +22,7 @@ Here are presented design patterns with detailed explanations and comments.
 - [Prototype](Prototype/main.cpp)
 - [Proxy](Proxy/main.cpp)
 - [Singleton](Singleton/main.cpp)
-- [Singleton](State/main.cpp)
+- [State](State/main.cpp)
+- [Strategy](Strategy/main.cpp)
+- [Template Method](TemplateMethod/main.cpp)
+- [Visitor](Visitor/main.cpp)
